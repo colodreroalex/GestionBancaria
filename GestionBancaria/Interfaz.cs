@@ -29,7 +29,7 @@ namespace GestionBancaria
 
         }
 
-        public static void MenuSecundario()
+        public static void MenuAgregarCuenta()
         {
             Console.Clear();
             Console.WriteLine("");
@@ -70,7 +70,7 @@ namespace GestionBancaria
             Console.ReadLine(); //Vaciar buffer del teclado 
         }
 
-        
+
 
         public static Opcion OpcionDelMenuPrincipal()
         {
@@ -106,7 +106,7 @@ namespace GestionBancaria
             return opcion;
         }
 
-        public static AgregarCuenta OpcionMenuSecundario()
+        public static AgregarCuenta OpcionMenuAgregar()
         {
 
             //RECURSOS 
@@ -117,7 +117,7 @@ namespace GestionBancaria
             {
                 opcionCorrecta = false;
                 //Mostrar Menu de tipo de Cuentas
-                MenuSecundario();
+                MenuAgregarCuenta();
                 //SELECCIONAR EL TIPO DE CUENTA
                 try
                 {
@@ -134,6 +134,11 @@ namespace GestionBancaria
             return cuenta;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static OperacionesCuenta OpcionMenuOperaciones()
         {
             OperacionesCuenta operaciones = OperacionesCuenta.Salir;
@@ -150,9 +155,9 @@ namespace GestionBancaria
                 try
                 {
                     operaciones = (OperacionesCuenta)LeerOpcion((byte)OperacionesCuenta.Salir, (byte)OperacionesCuenta.Retirar);
-                    opcionCorrecta = true; 
+                    opcionCorrecta = true;
                 }
-                catch(Exception err5)
+                catch (Exception err5)
                 {
                     InformarError(err5.Message);
                 }
@@ -162,5 +167,70 @@ namespace GestionBancaria
 
             return operaciones;
         }
+
+        internal static void MostrarListaCuentas(List<Cuenta> listaCuentas)
+        {
+            int indice = 1; //Indice para la lista de cuentas (No usar "var")
+            
+            Console.Clear();
+            Console.WriteLine("***GESTION DE CUENTAS BANCARIAS***");
+            Console.WriteLine("----------- LISTADO DE CUENTAS -------");
+            Console.WriteLine("\t0.-Salir");
+
+            foreach(Cuenta cuenta in listaCuentas)
+            {
+                Console.WriteLine($"\t{indice}.- {cuenta.Titular}");
+                Console.WriteLine("");
+                indice++;
+                
+            }
+
+            
+
+            //LEER OPCION()
+        }
+
+        public static int ElementoListaCuentas(List<Cuenta> lista)
+        {
+            int opcion = 0;
+            bool opcionCorrecta;
+
+            do
+            {
+                opcionCorrecta = false;
+                MostrarListaCuentas(lista);
+
+                try
+                {
+                    opcion = LeerOpcion((byte)Opcion.Salir, (byte)lista.Count);
+                    opcionCorrecta = true;
+                }
+                catch(Exception ex1)
+                {
+                    InformarError (ex1.Message);
+                }
+
+            } while (!opcionCorrecta); 
+
+
+            return opcion - 1;  
+            //-1 Porque si le pasas la cuenta n.15 , en memoria es la 14 en realidad.
+            //Si no hacemos esto modificamos cuentas que no son
+
+        }
+
+        public static void EstablecerTitularCuenta(Cuenta cuenta)//porque llamas aqui a cuenta si es un objeto
+        {
+            string nombre;
+
+            //Solicitar Titular
+            Console.Write("\n\tIntroduzca nuevo titular: ");
+            nombre = Console.ReadLine();
+
+            //Establecer Titular
+            cuenta.Titular = nombre; 
+        }
+
+
     }
 }
