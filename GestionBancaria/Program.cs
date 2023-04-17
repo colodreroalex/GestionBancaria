@@ -56,15 +56,15 @@ namespace GestionBancaria
                         break;
 
                     case Opcion.Eliminar:
-                        EliminarCuenta();
+                        EliminarCuenta(listaCuentas);
                         break;
 
                     case Opcion.Consultar:
-                        ConsultarCuenta();
+                        ConsultarCuenta(listaCuentas);
                         break;
 
                     case Opcion.Operar:
-                        OperarCuenta();
+                        OperarCuenta(listaCuentas);
                         break;
 
                     case Opcion.Cargar:
@@ -141,6 +141,7 @@ namespace GestionBancaria
                     Interfaz.EstablecerTitularCuenta(lista[indiceCuenta]);  //porque????       
 
                 }
+                //IMPORTANTE
                 else salir = true; 
                 
 
@@ -160,48 +161,129 @@ namespace GestionBancaria
             throw new NotImplementedException();
         }
 
-        static void EliminarCuenta()
+        static void EliminarCuenta(List<Cuenta> lista)
         {
-            //Mostrar Lista de Cuentas Existentes - POLIMORFISMO
+            int indice = -1;
+            bool salir = false;
 
-            //Seleccionar la cuenta a eliminar
+            
+            do
+            {
+                //Mostrar Lista de Cuentas Existentes - POLIMORFISMO
+                indice = Interfaz.ElementoListaCuentas(lista);
 
-            //Ejecutar la opcion - Eliminar la cuenta
+                if (Interfaz.ConfirmarOperacion("Eliminar", lista[indice]))
+
+                    //Ejecutar la opcion - Eliminar la cuenta
+                    lista.Remove(lista[indice]);
+
+                //IMPORTANTE
+                else salir = true; 
+
+            } while (!salir);
+            
+
+            
         }
 
-        static void ConsultarCuenta()
+        static void ConsultarCuenta(List<Cuenta> lista)
         {
+            int indice = -1;
+            bool salir = false;
             //Mostrar Lista de Cuentas Existentes - POLIMORFISMO
+            do
+            {
 
+                indice = Interfaz.ElementoListaCuentas(lista);
+
+                if (indice >= 0)
+                {
+                    Interfaz.MostrarCuenta(lista[indice]);
+
+                }
+                //IMPORTANTE
+                else salir = true; 
+
+            } while (!salir);
             //Seleccionar la cuenta a Consultar
 
             //Ejecutar la opcion - Consultar la cuenta
         }
 
-        static void OperarCuenta()
+        static void OperarCuenta(List<Cuenta> lista)
         {
             bool salir = false;
-            OperacionesCuenta operaciones = new OperacionesCuenta();
+            int indice = -1;
+            OperacionesCuenta operaciones = OperacionesCuenta.Salir;
 
             do
             {
 
-                operaciones = Interfaz.OpcionMenuOperaciones();
+                //Seleccionar la cuenta con la que operar
+                indice = Interfaz.ElementoListaCuentas(lista);
 
-                //EJECUTAR LA OPCION - OPERAR EN LA CUENTA
-                switch (operaciones)
+                if (indice >= 0)
                 {
-                    case OperacionesCuenta.Salir:
-                        salir = true;
-                        break;
-                    case OperacionesCuenta.Ingresar:
-                        break;
-                    case OperacionesCuenta.Retirar:
-                        break;
-                }
+                    //Captar la operacion  a realizar
+                    operaciones = Interfaz.OpcionMenuOperaciones();
 
+                    //EJECUTAR LA OPCION - OPERAR EN LA CUENTA
+                    switch (operaciones)
+                    {
+                        case OperacionesCuenta.Salir:
+                            salir = true;
+                            break;
+                        case OperacionesCuenta.Ingresar:
+                            IngresarCuenta(lista[indice]);
+                            break;
+                        case OperacionesCuenta.Retirar:
+                            RetirarCuenta(lista[indice]);
+                            break;
+                    }
+                }
+                //IMPORTANTE
+                else salir = true; 
+               
 
             } while (!salir);
+        }
+
+        private static void RetirarCuenta(Cuenta cuenta)
+        {
+            double cantidad;
+
+            cantidad = Interfaz.LeerCantidad(OperacionesCuenta.Retirar);
+
+            try
+            {
+                cuenta.Retirar(cantidad);
+            }
+            catch (Exception ex)
+            {
+                Interfaz.InformarError(ex.Message);
+            }
+
+
+
+        }
+
+        private static void IngresarCuenta(Cuenta cuenta)
+        {
+            double cantidad;
+
+
+            //Establecemos la cantidad a operar
+            cantidad = Interfaz.LeerCantidad(OperacionesCuenta.Ingresar);
+
+            try 
+            {
+                cuenta.Ingresar(cantidad);
+            }
+            catch(BGCuentas.CantidadException err)
+            {
+                Interfaz.InformarError(err.Message);
+            }
+
         }
 
 

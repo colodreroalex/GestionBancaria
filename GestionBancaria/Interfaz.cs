@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace GestionBancaria
 {
-    internal class Interfaz
+    public static partial class Interfaz
     {
         /// <summary>
         /// Menu principal de la Aplicacion
@@ -49,26 +49,37 @@ namespace GestionBancaria
             Console.WriteLine("\t2.-Retirar");
         }
 
-        public static byte LeerOpcion(byte opMin, byte opMax)
+       
+
+
+        internal static double LeerCantidad(OperacionesCuenta operacion)
         {
-            byte op;
+            double dinero = 0;
+            bool cantidadCorrecta;
 
-            Console.Write("\tIntroduzca su elección: ");
-            op = Convert.ToByte(Console.ReadLine());
 
-            if (op < opMin) throw new Exception($"Opcion {op} no válida");
-            if (op > opMax) throw new Exception($"Opcion {op} no válida");
+            do
+            {
+                cantidadCorrecta = false;
+                Console.WriteLine($"Introduzca la cantidad a {operacion}");
 
-            return op;
+                try
+                {
+                    dinero = Convert.ToDouble(Console.ReadLine());
+                    cantidadCorrecta = true; 
+                }
+                catch(Exception err)
+                {
+                    InformarError(err.Message);
+                }
+
+            } while (!cantidadCorrecta);
+
+            return dinero; 
+
         }
 
-        public static void InformarError(string message)
-        {
-            Console.WriteLine("\nSE HA PRODUCIDO UN ERROR");
-            Console.WriteLine($"ERROR: {message}");
-            Console.WriteLine("Pulse ENTER para continuar...");
-            Console.ReadLine(); //Vaciar buffer del teclado 
-        }
+        
 
 
 
@@ -182,42 +193,17 @@ namespace GestionBancaria
                 Console.WriteLine($"\t{indice}.- {cuenta.Titular}");
                 Console.WriteLine("");
                 indice++;
-                
             }
 
-            
 
             //LEER OPCION()
+
+
         }
 
-        public static int ElementoListaCuentas(List<Cuenta> lista)
-        {
-            int opcion = 0;
-            bool opcionCorrecta;
-
-            do
-            {
-                opcionCorrecta = false;
-                MostrarListaCuentas(lista);
-
-                try
-                {
-                    opcion = LeerOpcion((byte)Opcion.Salir, (byte)lista.Count);
-                    opcionCorrecta = true;
-                }
-                catch(Exception ex1)
-                {
-                    InformarError (ex1.Message);
-                }
-
-            } while (!opcionCorrecta); 
 
 
-            return opcion - 1;  
-            //-1 Porque si le pasas la cuenta n.15 , en memoria es la 14 en realidad.
-            //Si no hacemos esto modificamos cuentas que no son
 
-        }
 
         public static void EstablecerTitularCuenta(Cuenta cuenta)//porque llamas aqui a cuenta si es un objeto
         {
@@ -231,6 +217,8 @@ namespace GestionBancaria
             cuenta.Titular = nombre; 
         }
 
+        
 
+        
     }
 }
