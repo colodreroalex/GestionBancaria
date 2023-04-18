@@ -49,36 +49,6 @@ namespace GestionBancaria
             Console.WriteLine("\t2.-Retirar");
         }
 
-       
-
-
-        internal static double LeerCantidad(OperacionesCuenta operacion)
-        {
-            double dinero = 0;
-            bool cantidadCorrecta;
-
-
-            do
-            {
-                cantidadCorrecta = false;
-                Console.WriteLine($"Introduzca la cantidad a {operacion}");
-
-                try
-                {
-                    dinero = Convert.ToDouble(Console.ReadLine());
-                    cantidadCorrecta = true; 
-                }
-                catch(Exception err)
-                {
-                    InformarError(err.Message);
-                }
-
-            } while (!cantidadCorrecta);
-
-            return dinero; 
-
-        }
-
         
 
 
@@ -193,17 +163,15 @@ namespace GestionBancaria
                 Console.WriteLine($"\t{indice}.- {cuenta.Titular}");
                 Console.WriteLine("");
                 indice++;
+                
             }
 
+            
 
             //LEER OPCION()
-
-
         }
 
-
-
-
+        
 
         public static void EstablecerTitularCuenta(Cuenta cuenta)//porque llamas aqui a cuenta si es un objeto
         {
@@ -217,8 +185,6 @@ namespace GestionBancaria
             cuenta.Titular = nombre; 
         }
 
-        
 
-        
     }
 }

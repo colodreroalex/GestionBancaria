@@ -2,11 +2,9 @@
 
 namespace GestionBancaria
 {
-    //Eliminar una cuenta
-    //Consultar todos los datos de una cuenta
-    //Operar Cuenta
+    //AGREGAR CUENTA PARA EL MIERCOLES
 
-    //LUNES VEMOS LA SOLUCION
+   
 
 
     public enum Opcion : byte { Salir, Agregar, Modificar, Eliminar, Consultar, Operar, Cargar }
