@@ -9,7 +9,7 @@ namespace GestionBancaria
 {
     public static partial class Interfaz
     {
-        public static void MostrarCuenta(Cuenta cuenta)
+        public static void MostrarDatosCuenta(Cuenta cuenta)
         {
             //MOSTRAR TIPO DE CUENTA
             string tipoCuenta = "";
@@ -48,6 +48,27 @@ namespace GestionBancaria
 
         }
 
+        internal static void MostrarListaCuentas(List<Cuenta> listaCuentas)
+        {
+            int indice = 1; //Indice para la lista de cuentas (No usar "var")
+
+            Console.Clear();
+            Console.WriteLine("***GESTION DE CUENTAS BANCARIAS***");
+            Console.WriteLine("----------- LISTADO DE CUENTAS -------");
+            Console.WriteLine("\t0.-Salir");
+
+            foreach (Cuenta cuenta in listaCuentas)
+            {
+                Console.WriteLine($"\t{indice}.- {cuenta.Titular}");
+                Console.WriteLine("");
+                indice++;
+
+            }
+
+
+
+            //LEER OPCION()
+        }
 
         public static int ElementoListaCuentas(List<Cuenta> lista)
         {

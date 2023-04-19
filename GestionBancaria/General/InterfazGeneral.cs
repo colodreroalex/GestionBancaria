@@ -22,7 +22,6 @@ namespace GestionBancaria
             return opcion;
         }
 
-
         public static void InformarError(string message)
         {
             Console.WriteLine("\nSE HA PRODUCIDO UN ERROR");

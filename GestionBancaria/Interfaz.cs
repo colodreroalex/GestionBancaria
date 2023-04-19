@@ -29,30 +29,7 @@ namespace GestionBancaria
 
         }
 
-        public static void MenuAgregarCuenta()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            //Console.WriteLine("\t1.-Cuenta General");
-            Console.WriteLine("\t0.-Salir");
-            Console.WriteLine("\t1.-Cuenta Joven");
-            Console.WriteLine("\t2.-Cuenta Oro");
-            Console.WriteLine("\t3.-Cuenta Platino\n");
-        }
-
-        public static void MenuOperaciones()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("\t0.-Salir");
-            Console.WriteLine("\t1.-Ingresar");
-            Console.WriteLine("\t2.-Retirar");
-        }
-
-        
-
-
-
+       
         public static Opcion OpcionDelMenuPrincipal()
         {
             //RECURSOS
@@ -87,90 +64,6 @@ namespace GestionBancaria
             return opcion;
         }
 
-        public static AgregarCuenta OpcionMenuAgregar()
-        {
-
-            //RECURSOS 
-            AgregarCuenta cuenta = AgregarCuenta.Salir;
-            bool opcionCorrecta;
-
-            do
-            {
-                opcionCorrecta = false;
-                //Mostrar Menu de tipo de Cuentas
-                MenuAgregarCuenta();
-                //SELECCIONAR EL TIPO DE CUENTA
-                try
-                {
-                    cuenta = (AgregarCuenta)LeerOpcion((byte)AgregarCuenta.Salir, (byte)AgregarCuenta.Cuenta_Platino);
-                    opcionCorrecta = true;
-                }
-                catch (Exception err)
-                {
-                    InformarError(err.Message);
-                }
-
-            } while (!opcionCorrecta);
-
-            return cuenta;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static OperacionesCuenta OpcionMenuOperaciones()
-        {
-            OperacionesCuenta operaciones = OperacionesCuenta.Salir;
-            bool opcionCorrecta;
-
-            do
-            {
-                opcionCorrecta = false;
-
-                //MOSTRAR MENU OPERACIONES
-                MenuOperaciones();
-
-                //SELECCIONAR TIPO DE CUENTAS
-                try
-                {
-                    operaciones = (OperacionesCuenta)LeerOpcion((byte)OperacionesCuenta.Salir, (byte)OperacionesCuenta.Retirar);
-                    opcionCorrecta = true;
-                }
-                catch (Exception err5)
-                {
-                    InformarError(err5.Message);
-                }
-
-            } while (!opcionCorrecta);
-
-
-            return operaciones;
-        }
-
-        internal static void MostrarListaCuentas(List<Cuenta> listaCuentas)
-        {
-            int indice = 1; //Indice para la lista de cuentas (No usar "var")
-            
-            Console.Clear();
-            Console.WriteLine("***GESTION DE CUENTAS BANCARIAS***");
-            Console.WriteLine("----------- LISTADO DE CUENTAS -------");
-            Console.WriteLine("\t0.-Salir");
-
-            foreach(Cuenta cuenta in listaCuentas)
-            {
-                Console.WriteLine($"\t{indice}.- {cuenta.Titular}");
-                Console.WriteLine("");
-                indice++;
-                
-            }
-
-            
-
-            //LEER OPCION()
-        }
-
         
 
         public static void EstablecerTitularCuenta(Cuenta cuenta)//porque llamas aqui a cuenta si es un objeto
@@ -185,6 +78,6 @@ namespace GestionBancaria
             cuenta.Titular = nombre; 
         }
 
-
+        
     }
 }
