@@ -13,19 +13,15 @@ namespace GestionBancaria
         {
 
             bool salir = false;
-            int indice = -1;
             AgregarCuenta cuenta = GestionBancaria.AgregarCuenta.Salir;
+            Cuenta nuevaCuenta;     ///Nueva cuenta a agregar
 
-            string nombre = "";
-            double cantidad = 0;
-            int edad = 0;
+
             do
             {
 
                 //CAPTAR OPCION MENU SECUNDARIO
                 cuenta = Interfaz.OpcionMenuAgregar();
-
-
 
                 //EJECUTAR LA OPCION - AGREGAR LA CUENTA
                 switch (cuenta)
@@ -34,77 +30,94 @@ namespace GestionBancaria
                         salir = true;
                         break;
                     case GestionBancaria.AgregarCuenta.Cuenta_Joven:
-
-                        Añadir(lista);//?????
-
-
-                        break;
-
-
-
                     case GestionBancaria.AgregarCuenta.Cuenta_Oro:
-                        Añadir(lista);
-
-                        break;
-
-
-
                     case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+                        nuevaCuenta  = CrearCuenta(cuenta);
+                        lista.Add(nuevaCuenta);
                         break;
                 }
+
+                //Llamada a un unico metodo
+                    //if (cuenta == GestionBancaria.AgregarCuenta.Salir) salir = true;
+                    //else nuevaCuenta = CrearCuenta(cuenta);
+
+                    //if (nuevaCuenta != null)
+                    //    lista.Add(nuevaCuenta);
 
             } while (!salir);
 
-
-
-
         }
 
+        //EJEMPLO MAESTRO 
 
-        private static void Añadir(List<Cuenta> lista)
+            //CREAR UN METODO PARA CADA TIPO DE CUENTA
+        //public static CuentaJoven CrearJoven(AgregarCuenta tipo)
+        //{
+        //    CuentaJoven joven = null;
+
+
+
+        //    return joven; 
+        //}
+
+
+
+            //GENERAR UN METODO PARA TODOS LOS TIPOS - Cuando haya similitudes como en este caso
+        public static Cuenta CrearCuenta(AgregarCuenta tipo)
         {
-            string nombre = "";
-            int edad = 0;
-            double cantidad = 0;
-            bool esOk;
 
-            do
+            Cuenta newCuenta = null;
+
+            Console.WriteLine($"Ingrese el nombre para su cuenta: ");
+            string nombre = Console.ReadLine();
+
+            Console.WriteLine($"Ingrese la edad: ");
+            int edad = Int32.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Ingrese la cantidad a ingresar en la cuenta: ");
+            double cantidad = double.Parse(Console.ReadLine());
+
+            switch (tipo)
             {
-                esOk = false;
+                case GestionBancaria.AgregarCuenta.Cuenta_Joven:
+                    newCuenta = new CuentaJoven(nombre, cantidad, edad);
+                        break;
+                case GestionBancaria.AgregarCuenta.Cuenta_Oro:
+                    newCuenta = new CuentaOro(nombre, cantidad, edad);
+                    break;
+                case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+                    newCuenta = new CuentaPlatino(nombre, cantidad, edad);
+                    break;
 
-                try
-                {
+            }
 
-                    DatosCuenta(nombre, cantidad, edad);
-                    esOk = true;
-
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-
-            } while (!esOk);
-
-
+            return newCuenta; 
         }
 
+        //YO
+        //public static Cuenta CapturarDatosCuenta(AgregarCuenta tipoCuenta)
+        //{
+        //    Console.WriteLine($"Ingrese nombre para su cuenta: ");
+        //    string nombre = Console.ReadLine();
 
-        private static void DatosCuenta(string? nombre, double cantidad, int edad)
-        {
-            Console.WriteLine($"Ingrese nombre para su cuenta: ");
-            nombre = Console.ReadLine();
-            Console.WriteLine("Ahora introduce la edad: ");
-            edad = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Introduce la cantidad para esta cuenta(No puede estar vacia): ");
-            cantidad = Double.Parse(Console.ReadLine());
+        //    Console.WriteLine("Ahora introduce la edad: ");
+        //    int edad = Int32.Parse(Console.ReadLine());
 
-        }
+        //    Console.WriteLine("Introduce la cantidad para esta cuenta (No puede estar vacia): ");
+        //    double cantidad = Double.Parse(Console.ReadLine());
 
-
-
+        //    switch (tipoCuenta)
+        //    {
+        //        case GestionBancaria.AgregarCuenta.Cuenta_Joven:
+        //            return new CuentaJoven(nombre, cantidad, edad);
+        //        case GestionBancaria.AgregarCuenta.Cuenta_Oro:
+        //            return new CuentaOro(nombre, cantidad, edad);
+        //        case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+        //            return new CuentaPlatino(nombre, cantidad, edad);
+        //        default:
+        //            throw new ArgumentException("Tipo de cuenta no válido.");
+        //    }
+        //}
 
 
     }
