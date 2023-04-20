@@ -17,11 +17,10 @@ namespace GestionBancaria
 
 
             //COLECCION DE CREAR DATOS
+            //Como trabajo con memoria y tengo que pasar los datos de un lado para otro creo una coleccion
+
+                //AL TRABAJAR CON FICHEROS ESTO DESAPARECE
             List<Cuenta> listaCuentas = new List<Cuenta>();
-
-
-
-
 
             //Coleccion de la clase Cuenta(BASE), es decir, dentro de esta coleccion puedes tocar las otras tb
 
@@ -40,24 +39,24 @@ namespace GestionBancaria
                         break;
 
                     case Opcion.Agregar:
-                        AgregarCuenta(listaCuentas);
+                        AgregarCuenta(listaCuentas);                    //SUBMODULOS
                         break;
 
                     case Opcion.Modificar:
                         //LISTA DE las cuentas a modificar
-                        ModificarCuenta(listaCuentas);
+                        ModificarCuenta(listaCuentas);                    //SUBMODULOS
                         break;
 
                     case Opcion.Eliminar:
-                        EliminarCuenta(listaCuentas);
+                        EliminarCuenta(listaCuentas);                    //SUBMODULOS
                         break;
 
                     case Opcion.Consultar:
-                        ConsultarCuenta(listaCuentas);
+                        ConsultarCuenta(listaCuentas);                    //SUBMODULOS
                         break;
 
                     case Opcion.Operar:
-                        OperarCuenta(listaCuentas);
+                        OperarCuenta(listaCuentas);                    //SUBMODULOS
                         break;
 
                     case Opcion.Cargar:
@@ -65,7 +64,7 @@ namespace GestionBancaria
                         break;
                 }
 
-            } while (!salir);
+            } while (!salir);   //Se repite hasta que el user quiera salir
         }
 
         private static void CargarCuentas(List<Cuenta> listaCuentas)
@@ -94,6 +93,7 @@ namespace GestionBancaria
             listaCuentas.Add(new CuentaPlatino("Roberto4", 100000, 30));
 
             Console.WriteLine("\n\tDatos Correctamente cargados! Pulsa ENTER para continuar...");
+            Console.ReadLine(); 
 
         }
 

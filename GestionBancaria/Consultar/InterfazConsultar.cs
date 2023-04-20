@@ -101,5 +101,9 @@ namespace GestionBancaria
 
         }
 
+        internal static void InformarAccion(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

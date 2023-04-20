@@ -28,9 +28,5 @@ namespace GestionBancaria
 
         }
 
-
-
-
-
     }
 }
