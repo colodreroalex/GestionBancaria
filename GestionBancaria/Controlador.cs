@@ -42,7 +42,7 @@ namespace GestionBancaria
                         break;
 
                     case Opcion.Agregar:
-                        AgregarCuenta(listaCuentas);                    //SUBMODULOS
+                        AgregarCuenta();                    //SUBMODULOS
                         break;
 
                     case Opcion.Modificar:
