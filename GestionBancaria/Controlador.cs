@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace GestionBancaria
 {
     public static partial class Controlador //Publica y estatica porque solo contendra elementos estaticos
@@ -70,27 +73,43 @@ namespace GestionBancaria
         private static void CargarCuentas(List<Cuenta> listaCuentas)
         {
             //Cuenta Joven
-            listaCuentas.Add(new CuentaJoven("Federico", 100, 20));
-            listaCuentas.Add(new CuentaJoven("Federico1", 200, 25));
-            listaCuentas.Add(new CuentaJoven("Federico2", 300, 18));
-            listaCuentas.Add(new CuentaJoven("Federico3", 400, 26));
-            listaCuentas.Add(new CuentaJoven("Federico4", 500, 23));
+            //listaCuentas.Add(new CuentaJoven("Federico", 100, 20));
+            //listaCuentas.Add(new CuentaJoven("Federico1", 200, 25));
+            //listaCuentas.Add(new CuentaJoven("Federico2", 300, 18));
+            //listaCuentas.Add(new CuentaJoven("Federico3", 400, 26));
+            //listaCuentas.Add(new CuentaJoven("Federico4", 500, 23));
+
+            //CREACION DE CUENTAS EN EL FICHERO
+            Gfichero.AgregarCuenta(new CuentaJoven("Federico", 100, 20));
+            Gfichero.AgregarCuenta(new CuentaJoven("Federico1", 200, 25));
+            Gfichero.AgregarCuenta(new CuentaJoven("Federico2", 300, 18));
+            Gfichero.AgregarCuenta(new CuentaJoven("Federico3", 400, 26));
+            Gfichero.AgregarCuenta(new CuentaJoven("Federico4", 500, 23));
+
+            Gfichero.AgregarCuenta(new CuentaPlatino("Roberto", 100000, 30));
+            Gfichero.AgregarCuenta(new CuentaPlatino("Roberto1", 100000, 30));
+            Gfichero.AgregarCuenta(new CuentaPlatino("Roberto2", 100000, 30));
+            Gfichero.AgregarCuenta(new CuentaPlatino("Roberto3", 100000, 30));
+            Gfichero.AgregarCuenta(new CuentaPlatino("Roberto4", 100000, 30));
 
 
-            //Cuenta Oro
-            listaCuentas.Add(new CuentaOro("Alfredo", 150, 27));
-            listaCuentas.Add(new CuentaOro("Alfredo1", 123, 28));
-            listaCuentas.Add(new CuentaOro("Alfredo2", 432, 36));
-            listaCuentas.Add(new CuentaOro("Alfredo3", 132, 29));
-            listaCuentas.Add(new CuentaOro("Alfredo4", 111, 44));
+
+            ////Cuenta Oro
+            //listaCuentas.Add(new CuentaOro("Alfredo", 150, 27));
+            //listaCuentas.Add(new CuentaOro("Alfredo1", 123, 28));
+            //listaCuentas.Add(new CuentaOro("Alfredo2", 432, 36));
+            //listaCuentas.Add(new CuentaOro("Alfredo3", 132, 29));
+            //listaCuentas.Add(new CuentaOro("Alfredo4", 111, 44));
 
 
-            //Cuenta Platino
-            listaCuentas.Add(new CuentaPlatino("Roberto", 100000, 30));
-            listaCuentas.Add(new CuentaPlatino("Roberto1", 100000, 30));
-            listaCuentas.Add(new CuentaPlatino("Roberto2", 100000, 30));
-            listaCuentas.Add(new CuentaPlatino("Roberto3", 100000, 30));
-            listaCuentas.Add(new CuentaPlatino("Roberto4", 100000, 30));
+            ////Cuenta Platino
+            //listaCuentas.Add(new CuentaPlatino("Roberto", 100000, 30));
+            //listaCuentas.Add(new CuentaPlatino("Roberto1", 100000, 30));
+            //listaCuentas.Add(new CuentaPlatino("Roberto2", 100000, 30));
+            //listaCuentas.Add(new CuentaPlatino("Roberto3", 100000, 30));
+            //listaCuentas.Add(new CuentaPlatino("Roberto4", 100000, 30));
+
+
 
             Console.WriteLine("\n\tDatos Correctamente cargados! Pulsa ENTER para continuar...");
             Console.ReadLine(); 

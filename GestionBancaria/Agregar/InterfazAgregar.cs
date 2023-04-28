@@ -19,11 +19,11 @@ namespace GestionBancaria
             Console.WriteLine("\t3.-Cuenta Platino\n");
         }
 
-        public static AgregarCuenta OpcionMenuAgregar()
+        public static OTipoCuenta OpcionMenuAgregar()
         {
 
             //RECURSOS 
-            AgregarCuenta cuenta = AgregarCuenta.Salir;
+            OTipoCuenta cuenta = OTipoCuenta.Salir;
             bool opcionCorrecta;
 
             do
@@ -34,7 +34,7 @@ namespace GestionBancaria
                 //SELECCIONAR EL TIPO DE CUENTA
                 try
                 {
-                    cuenta = (AgregarCuenta)LeerOpcion((byte)AgregarCuenta.Salir, (byte)AgregarCuenta.Cuenta_Platino);
+                    cuenta = (OTipoCuenta)LeerOpcion((byte)OTipoCuenta.Salir, (byte)OTipoCuenta.Cuenta_Platino);
                     opcionCorrecta = true;
                 }
                 catch (Exception err)

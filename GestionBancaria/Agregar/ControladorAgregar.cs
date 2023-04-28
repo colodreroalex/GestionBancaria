@@ -13,7 +13,7 @@ namespace GestionBancaria
         {
 
             bool salir = false;
-            AgregarCuenta cuenta = GestionBancaria.AgregarCuenta.Salir;
+            OTipoCuenta cuenta = GestionBancaria.OTipoCuenta.Salir;
             Cuenta nuevaCuenta;      ///Nueva cuenta a agregar
 
 
@@ -28,12 +28,12 @@ namespace GestionBancaria
                 //EJECUTAR LA OPCION - AGREGAR LA CUENTA
                 switch (cuenta)
                 {
-                    case GestionBancaria.AgregarCuenta.Salir:
+                    case GestionBancaria.OTipoCuenta.Salir:
                         salir = true;
                         break;
-                    case GestionBancaria.AgregarCuenta.Cuenta_Joven:
-                    case GestionBancaria.AgregarCuenta.Cuenta_Oro:
-                    case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Joven:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Oro:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Platino:
                         nuevaCuenta  = CrearCuenta(cuenta);
                         lista.Add(nuevaCuenta);
                         break;
@@ -41,7 +41,7 @@ namespace GestionBancaria
 
                 #region 1CUENTA
                 //Llamada a un unico metodo
-                //if (cuenta == GestionBancaria.AgregarCuenta.Salir) salir = true;
+                //if (cuenta == GestionBancaria.OTipoCuenta.Salir) salir = true;
 
                 //else
                 //{
@@ -65,7 +65,7 @@ namespace GestionBancaria
 
 
         //GENERAR UN METODO PARA TODOS LOS TIPOS - Cuando haya similitudes como en este caso
-        public static Cuenta CrearCuenta(AgregarCuenta tipo)
+        public static Cuenta CrearCuenta(OTipoCuenta tipo)
         {
 
             Cuenta newCuenta = null;
@@ -83,13 +83,13 @@ namespace GestionBancaria
 
                 switch (tipo)
                 {
-                    case GestionBancaria.AgregarCuenta.Cuenta_Joven:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Joven:
                         newCuenta = new CuentaJoven(nombre, cantidad, edad);
                         break;
-                    case GestionBancaria.AgregarCuenta.Cuenta_Oro:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Oro:
                         newCuenta = new CuentaOro(nombre, cantidad, edad);
                         break;
-                    case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+                    case GestionBancaria.OTipoCuenta.Cuenta_Platino:
                         newCuenta = new CuentaPlatino(nombre, cantidad, edad);
                         break;
 
@@ -119,7 +119,7 @@ namespace GestionBancaria
         }
 
         //YO
-        //public static Cuenta CapturarDatosCuenta(AgregarCuenta tipoCuenta)
+        //public static Cuenta CapturarDatosCuenta(OTipoCuenta tipoCuenta)
         //{
         //    Console.WriteLine($"Ingrese nombre para su cuenta: ");
         //    string nombre = Console.ReadLine();
@@ -132,11 +132,11 @@ namespace GestionBancaria
 
         //    switch (tipoCuenta)
         //    {
-        //        case GestionBancaria.AgregarCuenta.Cuenta_Joven:
+        //        case GestionBancaria.OTipoCuenta.Cuenta_Joven:
         //            return new CuentaJoven(nombre, cantidad, edad);
-        //        case GestionBancaria.AgregarCuenta.Cuenta_Oro:
+        //        case GestionBancaria.OTipoCuenta.Cuenta_Oro:
         //            return new CuentaOro(nombre, cantidad, edad);
-        //        case GestionBancaria.AgregarCuenta.Cuenta_Platino:
+        //        case GestionBancaria.OTipoCuenta.Cuenta_Platino:
         //            return new CuentaPlatino(nombre, cantidad, edad);
         //        default:
         //            throw new ArgumentException("Tipo de cuenta no válido.");
