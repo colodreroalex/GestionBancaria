@@ -55,7 +55,9 @@ namespace GestionBancaria
                         break;
 
                     case Opcion.Consultar:
-                        ConsultarCuenta(listaCuentas);                    //SUBMODULOS
+                        /*ConsultarCuenta(listaCuentas);*/                    //SUBMODULOS
+                        ConsultarFcihero();
+
                         break;
 
                     case Opcion.Operar:

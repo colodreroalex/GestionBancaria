@@ -59,5 +59,7 @@ namespace GestionBancaria
             //CERRAR LOS RECURSOS ASOCIADOS AL FICHERO
             escritor.Close();
         }
+
+        
     }
 }
